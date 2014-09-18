@@ -11,7 +11,6 @@ var express = require('express'),
 
 var app = module.exports = express();
 
-
 var server = http.createServer(app);
 
 // Hook Socket.io into Express
@@ -22,10 +21,8 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.json());
 
-//app.use(methodOverride('X-HTTP-Method'));          // Microsoft
-//app.use(methodOverride('X-HTTP-Method-Override')); // Google/GData
-//app.use(methodOverride('X-Method-Override'));      // IBM;
-//app.use(methodOverride('_method'));
+app.set('port', (process.env.PORT || 3000))
+
 
 
 if ('development' == app.get('env')) {
@@ -102,6 +99,6 @@ io.sockets.on('connection', function(socket) {
 
 // Start server
 
-server.listen(3000, function(){
+server.listen(app.get('port'), function(){
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
