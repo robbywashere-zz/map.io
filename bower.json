@@ -1,0 +1,20 @@
+{
+  "name": "jennkim",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.24",
+    "angular-ui-map": "~0.5.0",
+    "jquery": "~2.1.1",
+    "angular-ui-utils": "~0.1.1",
+    "angular-ui": "~0.4.0",
+    "angular-bootstrap": "~0.11.0"
+  }
+}
