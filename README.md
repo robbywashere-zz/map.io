@@ -1,3 +1,7 @@
+#demo
+
+[This is the demo](http://powerful-citadel-7482.herokuapp.com/?map=6UC8zrHnmz)
+
 #install
 
 ```
