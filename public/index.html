@@ -26,8 +26,9 @@
   <h1>Live Map</h1>
   <div ng-controller="MapCtrl">
     <h4>Click to add a marker!</h4>
+    <p>Share this url to collaborate</p>
     <div id="map_canvas" ui-map="myMap" class="map"
-      ui-event="{'map-click': 'addMarker($event, $params)' }"
+      ui-event="{'map-click': 'addMarker($event, $params)', 'map-idle': 'onMapIdle()' }"
       ui-options="mapOptions">
     </div>
   </div>
@@ -40,8 +41,7 @@
 <script src="js/app.js"></script>
 
 
-<script>
-</script>
+<script>window.map=<%- JSON.stringify(map)%></script>
 
 
 </body>

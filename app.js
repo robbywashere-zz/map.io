@@ -27,7 +27,6 @@ app.use(bodyParser.json());
 //app.use(methodOverride('X-Method-Override'));      // IBM;
 //app.use(methodOverride('_method'));
 
-app.use(express.static(__dirname + '/public'));
 
 if ('development' == app.get('env')) {
   app.use(errorHandler({ dumpExceptions: true, showStack: true }));
@@ -39,21 +38,65 @@ if ('production' == app.get('env')) {
 }
 
 
-//catch-all because angular 
-app.get('*', function(req, res){
-  console.log(req);
+var MAPS = {};
+function makeid(){
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  res.sendFile(__dirname + '/public/index.html');
+  for( var i=0; i < 10; i++ )
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+
+//catch-all because angular 
+app.get('/', function(req, res){
+
+  var mapdata = { map: { } };
+  if (req.query.hasOwnProperty('map')) {
+
+    var room = req.query.map;
+
+    if (MAPS.hasOwnProperty(room)) {
+      mapdata = MAPS[room];
+    }
+    else {
+      mapdata.map['room'] = req.query.map;
+      mapdata.map['data'] = [];
+      MAPS[room] = mapdata;
+    }
+res.render(__dirname + '/public/index.html', mapdata);
+  }
+  else  {
+    res.redirect('/?map=' + makeid());
+  }
+
 });
 
+app.use(express.static(__dirname + '/public'));
 
 
 // Socket.io Communication
 
 io.sockets.on('connection', function(socket) {
   socket.emit('init', {});
-  socket.on('add:marker', function (data) {
-    socket.broadcast.emit('add:marker', data );
+  socket.on('room', function(room) {
+
+    var $rm = room;
+    socket.join(room);
+
+    socket.on('add:marker', function (data) {
+      if (!MAPS.hasOwnProperty($rm)) {
+        console.log('ERROR !rm:', socket);
+      }
+      else {
+        io.sockets.in($rm).emit('add:marker', data );
+        MAPS[$rm].map.data.push(data.data);
+      }
+    });
+
+
   });
 });
 
