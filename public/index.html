@@ -26,7 +26,7 @@
   <h1>Live Map</h1>
   <div ng-controller="MapCtrl">
     <h4>Click to add a marker!</h4>
-    <p>Share this url to collaborate</p>
+    <p>Share this url to collaborate: <a href="{{location}}" id="url">{{location}}</a></p>
     <div id="map_canvas" ui-map="myMap" class="map"
       ui-event="{'map-click': 'addMarker($event, $params)', 'map-idle': 'onMapIdle()' }"
       ui-options="mapOptions">

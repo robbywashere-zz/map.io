@@ -7,7 +7,9 @@ function initCall() {
 
 var app = angular.module('myApp', ['ui.map','ui.event']);
 
-app.controller('MapCtrl',[ '$scope', 'socket', function($scope, socket) {
+app.controller('MapCtrl',[ '$scope', 'socket', '$window', function($scope, socket, $window) {
+
+  $scope.location = $window.location.href;
 
 
   $scope.mapOptions = {
