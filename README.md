@@ -11,7 +11,7 @@ $>npm install
 $>npm start
 ```
 
-_if your tired of the crashing and restarting_
+_if you're tired of the crashing and restarting_
 
 ```
 $>npm install -g nodemon
