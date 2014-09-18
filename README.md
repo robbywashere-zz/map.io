@@ -21,6 +21,6 @@ $>nodemon app.js
 #cool :thumbsup:
 
 ```
-http://localhost/?map=this_can_be_anything_you_want_it_to_be
+http://localhost:3000/?map=this_can_be_anything_you_want_it_to_be
 ```
 
