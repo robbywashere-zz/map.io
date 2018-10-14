@@ -1,15 +1,15 @@
-#demo
+# demo
 
 [This is the demo](http://powerful-citadel-7482.herokuapp.com/?map=6UC8zrHnmz)
 
-#install
+# install
 
 ```
 $>npm install
 ```
 \*sort of unnecessary
 
-#run
+# run
 
 ```
 $>npm start
@@ -22,7 +22,7 @@ $>npm install -g nodemon
 $>nodemon app.js
 ```
 
-#cool :thumbsup:
+# cool :thumbsup:
 
 ```
 http://localhost:3000/?map=this_can_be_anything_you_want_it_to_be
